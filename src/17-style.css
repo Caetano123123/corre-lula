@@ -1,0 +1,128 @@
+html, body, #root { margin: 0; min-height: 100%; }
+body { background: var(--ds-page); }
+
+.game-root { display: flex; flex-direction: column; gap: 12px; }
+.game-canvas-wrap { position: relative; width: 100%; }
+.game-canvas {
+    display: block;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.game-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 20px;
+    background: rgba(10, 20, 35, 0.45);
+    border-radius: 16px;
+}
+.game-title {
+    margin: 0;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-weight: bold;
+    font-size: 30px;
+    color: #ffd94a;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.45);
+    letter-spacing: 1px;
+}
+.game-sub {
+    margin: 0;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-size: 14px;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+    max-width: 34em;
+}
+.game-score {
+    margin: 0;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+.game-hint {
+    margin: 4px 0 0;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+.game-best {
+    margin: 0;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-size: 12px;
+    color: #ffd94a;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+.game-diff-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.game-btn {
+    font-family: "Courier New", ui-monospace, monospace;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 12px 22px;
+    min-height: 44px;
+    border: 2px solid #ffd94a;
+    border-radius: 10px;
+    background: #d23b32;
+    color: #fff;
+    cursor: pointer;
+}
+.game-btn:hover { filter: brightness(1.08); }
+.game-btn[data-variant="secondary"] { background: rgba(0,0,0,0.35); border-color: rgba(255,255,255,0.7); }
+.game-controls { display: flex; gap: 10px; }
+.game-ctl {
+    flex: 1;
+    min-height: 48px;
+    font-family: "Courier New", ui-monospace, monospace;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--ds-hairline);
+    background: var(--ds-raised);
+    color: var(--ds-ink);
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.game-ctl-jump { background: #d23b32; color: #fff; border-color: #d23b32; }
+.game-ctl:active { filter: brightness(0.94); }
+
+.game-dpad {display:flex;gap:8px;justify-content:center;}
+.game-dpad button {min-width:52px;min-height:52px;font-size:24px;touch-action:none;}
+
+@media(max-width:340px) { .game-overlay {padding:12px;gap:6px;} .game-overlay .game-btn {padding:9px 12px;min-height:42px;font-size:13px;} .game-overlay .game-diff-row {gap:6px;} .game-overlay .game-title {font-size:25px;} .game-overlay .game-sub {font-size:12px;} .game-overlay .game-hint {font-size:10px;margin:0;} .game-overlay .game-best {font-size:10px;margin:0;} }
+
+.game-btn[data-active="true"]{box-shadow:inset 0 0 0 2px #fff;}
+
+.audio-context {margin:0;font-size:12px;line-height:1.5;color:var(--ds-ink-2);}
+.game-ctl:disabled{opacity:.5;cursor:default;}
+
+.pilot-scene{display:block;width:100%;max-width:480px;height:auto;max-height:210px;object-fit:contain;border:2px solid #ffd94a;image-rendering:pixelated;border-radius:5px;}
+.pilot-overlay{background:#202536;gap:10px;padding:12px;}
+.pilot-overlay .game-title{font-size:24px;}
+.pilot-overlay .game-btn{padding:10px 12px;}
+.pilot-overlay .game-sub{font-size:13px;}
+@media(max-width:440px){.game-overlay{padding:12px;gap:7px}.game-overlay .game-title{font-size:24px}.game-overlay .game-sub{font-size:12px}.game-overlay .game-btn{padding:9px 12px;font-size:13px}.game-overlay .game-hint{font-size:10px}.game-diff-row{gap:6px}.pilot-scene{max-height:180px;}}
+
+:root{--ds-page:#f4f1ea;--ds-raised:#fff;--ds-ink:#14171c;--ds-ink-2:#5b616b;--ds-hairline:#d9d5cb;}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ds-ink);line-height:1.5}
+.page{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+.page-head h1{margin:0 0 4px;font-size:32px}
+.page-head .tag{margin:0 0 12px;color:var(--ds-ink-2);font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+.page-section{margin-top:28px}.page-section h2{font-size:18px}
+dt{font-weight:700;margin-top:10px}dd{margin:2px 0 0;color:var(--ds-ink-2)}
+footer{margin-top:32px;color:var(--ds-ink-2);font-size:14px}
